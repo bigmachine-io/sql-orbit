@@ -1,0 +1,26 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      - POSTGRES_USER=dee
+      - POSTGRES_PASSWORD=deedle
+      - POSTGRES_DB=cassini
+    ports:
+      - "8088:5432"
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
+      - ./csvs:/home
+    container_name: pg
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports:
+      - "8080:8081"
+    links:
+      - postgres:postgres
+    environment:
+      - DATABASE_URL=postgres://dee:deedle@postgres:5432/cassini?sslmode=disable
+    depends_on:
+      - postgres

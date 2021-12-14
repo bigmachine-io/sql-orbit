@@ -1,0 +1,967 @@
+/* 04-Mar-2005 DA Gell updates per J. Mafi                         */
+/* 31-Mar-2005 DA Gell merged filament energy and status fields    */
+/* 04-Apr-2005 DA Gell revised names of filament status            */
+/* 08-Apr-2005 DA Gell replaced unit names with abbreviations      */
+/* 07-Jun-2005 DA Gell corrected lengths and formats of some items */
+/* 16-Jun-2005 DA Gell Post-Peer Review                            */
+/*                       changed ASCII_INT to ASCII_INTEGER        */
+/*                               ASCII_FLOAT to ASCII_REAL         */
+/*                       added column numbers                      */
+/* 20-Jun-2005 DA Gell Post-Peer Review II                         */
+/*                       Add note hat target relative geometric    */
+/*                       quantities are present within 1 hour of CA*/
+/*                       Corrected Typos                           */
+/*                       Added ion source mnemonics definition     */
+/* 23-Jun-2005 DA Gell Added closing quotation marks where missing */
+/*******************************************************************/
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 1
+  BYTES         = 21
+  DATA_TYPE     = TIME
+  NAME          = "SCLK"
+  FORMAT        = "A21"
+  DESCRIPTION   = "Spacecraft event time in the UTC time scale expressed
+                   as a PDS compliant date-time string."
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 2
+  BYTES         = 8
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "UTTIME"
+  FORMAT        = "I8"
+  DESCRIPTION   = "Time of measurement expressed in msec since midnight UTC."
+  UNIT          = "ms"
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 86400001
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 3
+  BYTES         = 26
+  DATA_TYPE     = CHARACTER
+  FORMAT        = "A26"
+  NAME          = "TARGET"
+  DESCRIPTION   = "Name of target body."
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 4
+  BYTES         = 8
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "TIME_CA"
+  FORMAT        = "I8"
+  DESCRIPTION   = "Time since closest approach."
+  UNIT          = "ms"
+  VALID_MINIMUM = -86400000
+  VALID_MAXIMUM = 86400000
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 5
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "TARG_POS_X"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "X component of the target body position in the IAU Saturn
+                reference frame, included within 1 hour of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 6
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "TARG_POS_Y"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "Y component of the target body position in the IAU Saturn
+                reference frame, included within 1 hour of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 7
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "TARG_POS_Z"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "Z component of the target body position in the
+                IAU Saturn reference frame, included within 1 hour
+                of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 8
+  BYTES         = 4
+  DATA_TYPE     = CHARACTER
+  NAME          = "SOURCE"
+  FORMAT        = "A4"
+  DESCRIPTION   = "Ion source used for this measurement,
+                   Open Source Ion (osi)
+                   Closed Source Neutral(csn)
+                   Open Source Neutral Beam (osnb)
+		   Open Souce Neutral Thermal (osnt)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 9
+  BYTES         = 4
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "DATA_RELIABILITY"
+  FORMAT        = "I4"
+  DESCRIPTION   = "This value is set to a non-zero value during
+                scans in which an instrument transition may cause
+                data reliability concerns.
+                (Not implemented in Version 05 data files)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 10
+  BYTES         = 8
+  DATA_TYPE     = CHARACTER
+  NAME          = "TABLE_SET_ID"
+  FORMAT        = "A8"
+  DESCRIPTION   = "Table set Identifier, consisting of an ID and revision
+                number, TTTT-rrr."
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 11
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "COADD_CNT"
+  FORMAT        = "I3"
+  DESCRIPTION   = "Specifies the number of integration periods added
+                  together. A value of 1 indicates no coadding, 255
+                  indicates maximum coadding - minimum data rate."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 255
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 12
+  BYTES         = 7
+  DATA_TYPE     = CHARACTER
+  NAME          = "OSP_FIL_1_STATUS"
+  FORMAT        = "A7"
+  DESCRIPTION   = "Open source primary filament status (fil_1), OFF,
+                  LOW-EV (25eV) HIGH-EV (70eV)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 13
+  BYTES         = 7
+  DATA_TYPE     = CHARACTER
+  NAME          = "OSS_FIL_2_STATUS"
+  FORMAT        = "A7"
+  DESCRIPTION   = "Open source secondary filament status (fil_2), OFF,
+                  LOW-EV (25eV) HIGH-EV (70eV)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 14
+  BYTES         = 7
+  DATA_TYPE     = CHARACTER
+  NAME          = "CSP_FIL_3_STATUS"
+  FORMAT        = "A7"
+  DESCRIPTION   = "Closed source primary filament (fil_3) status, OFF,
+                  LOW-EV (27eV) HIGH-EV (71eV)"
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 1
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 15
+  BYTES         = 7
+  DATA_TYPE     = CHARACTER
+  NAME          = "CSS_FIL_4_STATUS"
+  FORMAT        = "A7"
+  DESCRIPTION   = "Closed source secondary filament (fil_4) status, OFF,
+                  LOW-EV (27eV) HIGH-EV(71eV)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 16
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "SEQ_TABLE"
+  DESCRIPTION   = "Number of the sequence table controlling the instrument
+                   operation. This table lists a set of cycle tables, each
+                   one of which specifies one or more mass scans."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 64
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 17
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "CYC_NUM"
+  FORMAT        = "I2"
+  DESCRIPTION   = "The number of the cycle within the sequence,
+                   indexes in this sequence table."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 31
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 18
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "CYC_TABLE"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Identification number of the cycle table controlling
+                   the current mass scan. This table selects the mass,
+                   focus, trap, switching and D/A table used to operate
+                   the instrument for  mass scan."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 64
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 19
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "SCAN_NUM"
+  DESCRIPTION   = "The number of the scan within the cycle,
+                   indexes the cycle table."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 31
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 20
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "TRAP_TABLE"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Identification number of the trap table specifying
+                   collimator, deflector, top plate and OL4 voltages
+                   used in the mass scan."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 31
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 21
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "SW_TABLE"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Identification number of the Switching table specifying
+                  the quadrupole rod voltages."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 31
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 22
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "MASS_TABLE"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Identification number of the mass table specifying the
+                  68 mass/charge values making up a mass scan."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 96
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 23
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "FOCUS_TABLE"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Identification number of the focus table specifying
+                  OL1, OL2, OL3, endplate, ion lens, and quadrupole
+                  bias voltages."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 31
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 24
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I2"
+  NAME          = "DA_TABLE"
+  DESCRIPTION   = "Identification number of the D/A table specifying the
+                  electron multiplier and detector threshold settings."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 16
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 25
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VELOCITY_COMP"
+  FORMAT        = "F6.3"
+  DESCRIPTION   = "Compensation velocity used in onboard computation
+                  of lens and deflector voltages"
+  UNIT          = "km/s"
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 50.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 26
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "IPNUM"
+  FORMAT        = "I2"
+  DESCRIPTION   = "Integration period number, indexes the mass, trap
+                   switching and focus tables."
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 68
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 27
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "MASS"
+  FORMAT        = "F6.3"
+  DESCRIPTION   = "Mass per unit charge detected during current integration
+                period"
+  UNIT          = "AMU/Z"
+  VALID_MINIMUM = 0.125
+  VALID_MAXIMUM = 99.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 28
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "OS_LENS2"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Open source lens 2 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -10.00
+  VALID_MAXIMUM =  10.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 29
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "OS_LENS1"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Open source lens 1 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -10.00
+  VALID_MAXIMUM =  10.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 30
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "OS_LENS4"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Open source lens 4 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -10.00
+  VALID_MAXIMUM =  10.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 31
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "OS_LENS3"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Open source lens 3 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -10.00
+  VALID_MAXIMUM =  10.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 32
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "QP_LENS2"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Quadrapole 2 lens voltages."
+  UNIT          = "v"
+  VALID_MINIMUM = -200.0
+  VALID_MAXIMUM = 200.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 33
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "QP_LENS1"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Quadrupole 1 lens voltages."
+  UNIT          = "v"
+  VALID_MINIMUM = -200.0
+  VALID_MAXIMUM = 200.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 34
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "QP_LENS4"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Quadrupole 4 lens voltages."
+  UNIT          = "v"
+  VALID_MINIMUM = -200.0
+  VALID_MAXIMUM = 200.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 35
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "QP_LENS3"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Quadrupole 3 lens voltages."
+  UNIT          = "v"
+  VALID_MINIMUM = -200.0
+  VALID_MAXIMUM = 200.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 36
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "QP_BIAS"
+  DESCRIPTION   = "Quadrupole bias voltage."
+  FORMAT        = "F7.3"
+  UNIT          = "v"
+  VALID_MINIMUM = -200.0
+  VALID_MAXIMUM = 200.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 37
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "ION_DEFL2"
+  FORMAT        = "6.2"
+  DESCRIPTION   = "Ion deflector 2 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -62.0
+  VALID_MAXIMUM = 62.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 38
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "ION_DEFL1"
+  FORMAT        = "6.2"
+  DESCRIPTION   = "Ion deflector 1 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -62.0
+  VALID_MAXIMUM = 62.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 39
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "ION_DEFL4"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Ion deflector 4 voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -62.0
+  VALID_MAXIMUM = 62.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 40
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "ION_DEFL3"
+  DESCRIPTION   = "Ion deflector 3 voltage."
+  FORMAT        = "F6.2"
+  UNIT          = "v"
+  VALID_MINIMUM = -62.0
+  VALID_MAXIMUM = 62.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 41
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "TOP_PLATE"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "Top plate lens voltage."
+  UNIT          = "v"
+  VALID_MINIMUM = -30.0
+  VALID_MAXIMUM = 30.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 42
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "P_ENERGY"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Particle Energy."
+  UNIT          = "ev"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 50.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 43
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "ALT_T"
+  FORMAT        = "F9.2"
+  DESCRIPTION   = "Altitude of the spacecraft above the surface of the
+                named target body, included within 1 hour of
+                closest approach"
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E05
+  VALID_MAXIMUM = 1.0E05
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 44
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VIEW_DIR_T_X"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Components of the  UNIT vector in the direction of the
+                INMS aperture outward normal expressed in the target
+                centered IAU coordinate frame, included within 1 hour
+                of closest approach."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 45
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VIEW_DIR_T_Y"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Components of the UNIT vector in the direction of the
+                 INMS aperture outward normal expressed in the target
+                 centered IAU coordinate frame,included within 1 hour
+                of closest approach."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 46
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "F9.6"
+  NAME          = "VIEW_DIR_T_Z"
+  DESCRIPTION   = "Components of the UNIT vector in the direction of the
+                INMS aperture outward normal expressed in the target
+                centered IAU coordinate frame,included within 1 hour
+                of closest approach."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 47
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_T_X"
+  FORMAT        = "F9.2"
+  DESCRIPTION   = "X-component of spacecraft position with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E05
+  VALID_MAXIMUM = 1.0E05
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 48
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_T_Y"
+  FORMAT        = "F9.2"
+  DESCRIPTION   = "Y-component of spacecraft position with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E05
+  VALID_MAXIMUM = 1.0E05
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 49
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_T_Z"
+  FORMAT        = "F9.2"
+  DESCRIPTION   = "Z-component of spacecraft position with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E05
+  VALID_MAXIMUM = 1.0E05
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 50
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_X"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "X-component of spacecraft velocity with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 51
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_Y"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Y-component of spacecraft velocity with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 52
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_Z"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Z-component of spacecraft velocity with respect to the
+                 named target in the target centered IAU coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 53
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_SCX"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "X-component of spacecraft velocity with respect to the
+                 named target in the spacecraft centered coordinate frame,
+                 included within 1 hour of closest approach."
+  UNIT          = "km/s"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 54
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_SCY"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Y-component of spacecraft velocity with respect to the
+                 named target in the spacecraft centered coordinate frame,
+                 included within 1 hour of closest approach"
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 55
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_T_SCZ"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Z-component of spacecraft velocity with respect to the
+                 named target in the spacecraft centered coordinate frame,
+                 included within 1 hour of closest approach"
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 56
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "LST_T"
+  FORMAT        = "F6.3"
+  DESCRIPTION   = "The local solartime at the sub-spacecraft point
+                  on the target body, included within 1 hour of
+                  closest approach."
+  UNIT          = "hr"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 24.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 57
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SZA_T"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "The solar zenith angle at the sub-satellite point
+                  on the target body, included within 1 hour of
+                  closest approach"
+  UNIT          = "deg"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 180.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 58
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SS_LONG_T"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "The west longitude of the sub-solar point
+                  on the target body, included within 1 hour of
+                  closest approach"
+  UNIT          = "deg"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 360.
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 59
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "DISTANCE_S"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "Distance of the spacecraft from Saturn's center"
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 60
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VIEW_DIR_S_X"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Components of the   UNIT vector in the direction of the
+                INMS aperture outward normal in the Saturn centered
+                IAU coordinate frame."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 61
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VIEW_DIR_S_Y"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Components of the   UNIT vector in the direction of the
+                INMS aperture outward normal in the Saturn centered
+                IAU coordinate frame."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 62
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "VIEW_DIR_S_Z"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Components of the   UNIT vector in the direction of the
+                INMS aperture outward normal in the Saturn centered
+                IAU coordinate frame."
+  VALID_MINIMUM = -1.0
+  VALID_MAXIMUM = 1.0
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 63
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_S_X"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "X-component of spacecraft position in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 64
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_S_Y"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "Y-component of spacecraft position in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 65
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_POS_S_Z"
+  FORMAT        = "F9.0"
+  DESCRIPTION   = "Z-component of spacecraft position in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km"
+  VALID_MINIMUM = -1.0E07
+  VALID_MAXIMUM = 1.0E07
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 66
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_S_X"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "X-component of spacecraft velocity in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 67
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_S_Y"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Y-component of spacecraft velocity in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 68
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_VEL_S_Z"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "Z-component of spacecraft velocity in the Saturn
+                centered IAU coordinate frame."
+  UNIT          = "km/s"
+  VALID_MINIMUM = -100.
+  VALID_MAXIMUM = 100.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 69
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "LST_S"
+  FORMAT        = "F6.3"
+  DESCRIPTION   = "The local solartime at the sub-spacecraft point
+                  on Saturn"
+  UNIT          = "hr"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 24.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 70
+  BYTES         = 7
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SZA_S"
+  FORMAT        = "F7.3"
+  DESCRIPTION   = "The solar zenith angle at the sub-satellite point
+                  on Saturn"
+  UNIT          = "deg"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 180.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 71
+  BYTES         = 6
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SS_LONG_S"
+  FORMAT        = "F6.2"
+  DESCRIPTION   = "The west longitude of the sub-solar point
+                  on Saturn"
+  UNIT          = "deg"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 360.
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 72
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_ATT_ANGLE_RA"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Right ascension of spacecraft z axis."
+  UNIT          = "rad"
+  VALID_MINIMUM = 0.0
+  VALID_MAXIMUM = 6.283185
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 73
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_ATT_ANGLE_DEC"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Declination of spacecraft z axis."
+  UNIT          = "rad"
+  VALID_MINIMUM = -1.5708
+  VALID_MAXIMUM = 1.5708
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 74
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  NAME          = "SC_ATT_ANGLE_TW"
+  FORMAT        = "F9.6"
+  DESCRIPTION   = "Rotation of spacecraft about z axis."
+  UNIT          = "rad"
+  VALID_MINIMUM = 0.0
+  VALID_MAXIMUM = 6.283185
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 75
+  BYTES         = 6
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "C1COUNTS"
+  FORMAT        = "I6"
+  DESCRIPTION   = "High sensitivity counts."
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 1000000
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  FIELD_NUMBER  = 76
+  BYTES         = 6
+  DATA_TYPE     = ASCII_INTEGER
+  NAME          = "C2COUNTS"
+  FORMAT        = "I6"
+  DESCRIPTION   = "Low sensitivity counts."
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 1000000
+END_OBJECT    = FIELD

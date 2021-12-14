@@ -1,0 +1,1053 @@
+/*                                                                 */
+/* 25-Apr-2005 D.A. Gell   initial coding                          */
+/*                                                                 */
+/*******************************************************************/
+
+
+OBJECT        = FIELD
+  NAME          = "SOURCE"
+  BYTES         = 2
+  DATA_TYPE     = CHARACTER
+  FORMAT        = "A2"
+  DESCRIPTION   = "Ion source to which the calibration applies
+  		  Closed Source (CS) or Open Source (OS)"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "GAS"
+  BYTES         = 48
+  DATA_TYPE     = CHARACTER
+  FORMAT        = A48
+  DESCRIPTION   = "The name of the calibration gas species"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "FORMULA"
+  BYTES         = 16
+  DATA_TYPE     = CHARACTER
+  FORMAT        = "A16"
+  DESCRIPTION   = "The molecular formula of the calibration
+  		  species"
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "IDL_STRING"
+  BYTES         = 16
+  DATA_TYPE     = CHARACTER
+  FORMAT        = "A16"
+  DESCRIPTION   = "The molecular formula as a string with IDL 
+  		  in-line formating"
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "MOL_WT"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = I3
+  DESCRIPTION   = "The molecular weight of the calibration species"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "UNIT"
+  BYTES         = 3
+  DATA_TYPE     = CHARACTER
+  FORMAT        = "A3"
+  DESCRIPTION   = "The instrument unit calibrated to obtain the 
+  		  calibration data, flight unit (FM), engineering
+		  unit (EM) or NIST (NT). Invalid calibrations are
+		  prefixed with X, e.g. XNT"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "FILE"
+  BYTES         = 132
+  DATA_TYPE     = CHARACTER
+  FORMAT        = A132
+  DESCRIPTION   = "The source file in the /EXTRAS/CALREPORT
+  		   directory summarized in this record" 
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "FILAMENT"
+  BYTES         = 10
+  DATA_TYPE     = CHARACTER
+  FORMAT        = A10
+  DESCRIPTION   = "The ion source filament energized while taking
+  		  calibration data, either PRIMARY or SECONDARY"
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "ELECTRON_ENERGY"
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = I2
+  DESCRIPTION   = "The ion source electron beam energy"
+  UNIT          = "eV"
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 99
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MAJOR_PEAK"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "The mass of the dissociation product produced in
+  	               greatest quantity"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "SENSITIVITY"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Instrument sensitivity to the major peak"
+  UNIT          = "C/s/particles/cm**3"
+  VALID_MINIMUM = 0.
+  VALID_MAXIMUM = 1.0E00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "PEAK_COUNT"
+  BYTES         = 2
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = I2
+  DESCRIPTION   = "The number of dissociation products formed
+  		           when the calibration gas is ionized."
+  VALID_MINIMUM = 0
+  VALID_MAXIMUM = 30
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_01"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_01"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "MASS_02"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_02"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_03"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_03"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_04"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_04"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_05"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_05"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_06"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_06"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_07"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_07"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_08"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_08"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_09"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_09"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_10"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_10"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_11"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_11"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "MASS_12"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_12"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_13"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_13"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_14"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_14"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_15"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_15"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_16"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_16"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_17"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_17"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_18"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_18"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_19"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_19"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_20"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_20"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "MASS_21"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_21"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+
+OBJECT        = FIELD
+  NAME          = "MASS_22"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_22"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_23"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_23"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_24"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_24"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_25"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_25"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_26"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_26"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_27"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_27"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_28"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_28"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_29"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_29"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_30"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_30"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_31"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_31"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_32"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_32"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_33"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_33"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_34"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_34"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_35"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_35"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_36"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_36"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_37"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_37"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_38"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_38"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_39"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_39"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "MASS_40"
+  BYTES         = 3
+  DATA_TYPE     = ASCII_INTEGER
+  FORMAT        = "I3"
+  DESCRIPTION   = "Mass of a dissociation fragment"
+  UNIT          = "AMU"
+  VALID_MINIMUM = 1
+  VALID_MAXIMUM = 100
+END_OBJECT    = FIELD
+
+OBJECT        = FIELD
+  NAME          = "REL_RESPONSE_40"
+  BYTES         = 9
+  DATA_TYPE     = ASCII_REAL
+  FORMAT        = "E9.2"
+  DESCRIPTION   = "Relative response to dissociation fragment,
+  		  major peak value is 1.000"
+  UNIT          = "N/A"
+  VALID_MINIMUM = 0 
+  VALID_MAXIMUM = 1.00
+END_OBJECT    = FIELD
+
